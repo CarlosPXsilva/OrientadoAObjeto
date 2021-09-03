@@ -1,32 +1,32 @@
 package orientando;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 public class Aluno {
 
 	/* Esses são os atributos do objeto Aluno */
-	public String nome;
-	public String dataNascimento;
-	String registroGeral;
-	String numeroCpf;
-	String nomeMae;
-	String nomePai;
-	String dataMatricula;
-	String nomeEscola;
-	String serieMatriculado;
-	
-	private List<Disciplina> disciplina = new ArrayList<Disciplina>();
-	
+	private String nome;
+	private int idade;
+	private String dataNascimento;
+	private String registroGeral;
+	private String numeroCpf;
+	private String nomeMae;
+	private String nomePai;
+	private String dataMatricula;
+	private String nomeEscola;
+	private String serieMatriculado;
+
+	private List<Disciplina> disciplinas = new ArrayList<Disciplina>();
+
 	public List<Disciplina> getDisciplina() {
-		return disciplina;
+		return disciplinas;
 	}
 
 	public void setDisciplina(List<Disciplina> disciplina) {
-		this.disciplina = disciplina;
+		this.disciplinas = disciplina;
 	}
-
-	public int idade;
 
 	public Aluno() {/* cria os dados na memória - Sendo padrão do Java */
 
@@ -126,12 +126,15 @@ public class Aluno {
 		this.idade = idade;
 	}
 
-	
-
 	/* Método que retorna a média do aluno */
 	public double getMediaNota() {
-		return 0;
-				
+
+		double somaNotas = 0.0;
+		for (Disciplina disciplina : disciplinas) {
+			somaNotas += disciplina.getNota();
+		}
+
+		return somaNotas / disciplinas.size();
 
 	}
 
@@ -152,21 +155,18 @@ public class Aluno {
 			return "aluno esta reprovado";
 		}
 	}
-	
-	
-	
 
 	@Override
 	public String toString() {
 		return "Aluno [nome=" + nome + ", dataNascimento=" + dataNascimento + ", registroGeral=" + registroGeral
 				+ ", numeroCpf=" + numeroCpf + ", nomeMae=" + nomeMae + ", nomePai=" + nomePai + ", dataMatricula="
-				+ dataMatricula + ", nomeEscola=" + nomeEscola + ", serieMatriculado=" + serieMatriculado
-				+ ", idade=" + idade + "]";
+				+ dataMatricula + ", nomeEscola=" + nomeEscola + ", serieMatriculado=" + serieMatriculado + ", idade="
+				+ idade + "]";
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(dataMatricula, dataNascimento, disciplina, idade, nome, nomeEscola, nomeMae, nomePai,
+		return Objects.hash(dataMatricula, dataNascimento, disciplinas, idade, nome, nomeEscola, nomeMae, nomePai,
 				numeroCpf, registroGeral, serieMatriculado);
 	}
 
@@ -180,18 +180,12 @@ public class Aluno {
 			return false;
 		Aluno other = (Aluno) obj;
 		return Objects.equals(dataMatricula, other.dataMatricula)
-				&& Objects.equals(dataNascimento, other.dataNascimento) && Objects.equals(disciplina, other.disciplina)
-				&& idade == other.idade && Objects.equals(nome, other.nome)
-				&& Objects.equals(nomeEscola, other.nomeEscola) && Objects.equals(nomeMae, other.nomeMae)
-				&& Objects.equals(nomePai, other.nomePai) && Objects.equals(numeroCpf, other.numeroCpf)
-				&& Objects.equals(registroGeral, other.registroGeral)
+				&& Objects.equals(dataNascimento, other.dataNascimento)
+				&& Objects.equals(disciplinas, other.disciplinas) && idade == other.idade
+				&& Objects.equals(nome, other.nome) && Objects.equals(nomeEscola, other.nomeEscola)
+				&& Objects.equals(nomeMae, other.nomeMae) && Objects.equals(nomePai, other.nomePai)
+				&& Objects.equals(numeroCpf, other.numeroCpf) && Objects.equals(registroGeral, other.registroGeral)
 				&& Objects.equals(serieMatriculado, other.serieMatriculado);
 	}
 
-	
-	
-	
-
-	
-	
 }

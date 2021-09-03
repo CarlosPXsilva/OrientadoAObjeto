@@ -3,6 +3,7 @@ package OrientadoConstrutor;
 import javax.swing.JOptionPane;
 
 import orientando.Aluno;
+import orientando.Disciplina;
 
 public class PrimeiraClasseJava {
 	public static void main(String[] args) {
@@ -21,19 +22,7 @@ public class PrimeiraClasseJava {
 		String serieMatriculado = JOptionPane.showInputDialog("Qual é serie de matrucla do aluno?");
 		String nomeEscola = JOptionPane.showInputDialog("Qual é o nome da escola do aluno?");
 		
-		String disciplina1 = JOptionPane.showInputDialog("Qual é a Disciplina 1?:");
-		String nota1 = JOptionPane.showInputDialog("Qual é a primeira nota do aluno?");
-		
-		String disciplina2 = JOptionPane.showInputDialog("Disciplina 2?:");
-		String nota2 = JOptionPane.showInputDialog("Qual é a segunda nota do aluno?");
-		
-		String disciplina3 = JOptionPane.showInputDialog("Disciplina 3?:");
-		String nota3 = JOptionPane.showInputDialog("Qual é a terceira nota do aluno?");
-		
-		String disciplina4 = JOptionPane.showInputDialog("Disciplina 4?:");
-		String nota4 = JOptionPane.showInputDialog("Qual é a quarta nota do aluno?");
-		
-
+	
 		Aluno aluno1 = new Aluno();
 
 		aluno1.setNome(nome);
@@ -47,9 +36,24 @@ public class PrimeiraClasseJava {
 		aluno1.setSerieMatriculado(serieMatriculado);
 		aluno1.setNomeEscola(nomeEscola);
 		
+		
+		for(int pos = 1; pos <=4; pos++) {
+		
+			String nomeDisciplina = JOptionPane.showInputDialog("Nome da Disciplina " +pos+ " ?");
+			String notaDisciplina = JOptionPane.showInputDialog("Nota da disciplina" +pos+ " ?");
+			
+			Disciplina disciplina = new Disciplina();
+			disciplina.setDisciplina(nomeDisciplina);
+			disciplina.setNota(Double.valueOf(notaDisciplina)); 
+			
+			aluno1.getDisciplina().add(disciplina);
+		}
+		
 		System.out.println(aluno1);/*Descrição do objeto na memória*/
 		System.out.println("Média do aluno = " +aluno1.getMediaNota());
 		System.out.println("Resultado = " +aluno1.getAlunoAprovado2());
 		
 	}
+	
+	
 }
